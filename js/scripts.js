@@ -1,8 +1,5 @@
-var defaultCenter = [40.622813, -74.028282];
-var defaultZoom = 17;
-
 var map =
-    L.map('my-map', {preferCanvas: true}).setView([40.731389,-73.992748], 11);
+    L.map('my-map', {preferCanvas: true}).setView([40.732568, -74.082140], 11);
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
     	subdomains: 'abcd',
