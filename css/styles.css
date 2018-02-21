@@ -1,0 +1,49 @@
+#my-map {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.leaflet-control-layers-expanded {
+  color: #afafaf;
+	background-color: #323132;
+  font-size: 30px;
+  font-family: 'Lekton', sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  margin: 0;
+  font-family: 'Lekton', sans-serif;
+  font-size: 30px;
+}
+
+p {
+  font-size: 21px;
+  font-family: 'Lekton', sans-serif;
+}
+
+
+#title-container {
+  color: #afafaf;
+  position: absolute;
+  z-index: 1000;
+  top: 11px;
+  left: 56px;
+  background: #323132;
+  padding: 15px;
+}
+
+
+font-family: 'Sirin Stencil', cursive;
+font-family: 'Fredoka One', cursive;
+font-family: 'Chewy', cursive;
+font-family: 'Lekton', sans-serif;
+font-family: 'Bowlby One SC', cursive;
+font-family: 'Frijole', cursive;
+font-family: 'Londrina Outline', cursive;
+/* font-family: 'Faster One', cursive; */
+/* font-family: 'Nosifer', cursive; */
+font-family: 'Bungee Outline', cursive;
