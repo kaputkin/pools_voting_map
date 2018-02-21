@@ -6,16 +6,16 @@ var map =
     	maxZoom: 19,
     }).addTo(map);
 
+map.createPane('ED');
+map.getPane('ED').style.zIndex = 300;
+
 var myRenderer = L.canvas({ padding: 0.5 });
-// var controlLayers = L.control.layers().addTo(map);
 var votinged = 'data/votingmini.geojson';
 
 $.getJSON(votinged, function (geojson) {
   var geojsonLayer = L.geoJson(geojson, {style:style
       }).addTo(map);
-  // controlLayers.addOverlay(geojsonLayer,'Election Districts');
 });
-
 
 
   function getColor(x) {
@@ -38,7 +38,8 @@ $.getJSON(votinged, function (geojson) {
           weight: .5,
           opacity: 1,
           color: 'white',
-          fillOpacity: 0.7
+          fillOpacity: 0.7,
+          pane: 'ED',
       };
   }
 
@@ -47,18 +48,19 @@ $.getJSON(votinged, function (geojson) {
     var latlon = [poolObject.Y, poolObject.X];
     var options = {
       renderer: myRenderer,
-      radius: .4,
+      radius: 2,
       stroke: false,
-      fillColor: 'rgb(18, 84, 171)',
+      fillOpacity: .1,
+      fillColor: '#1254ab'
     };
   poolArray.push(L.circleMarker(latlon, options))
-      });
+});
 
-var pools = LayerGroup = L.layerGroup(poolArray);
+var pools = L.featureGroup(poolArray).addTo(map);
 
 var Sectorslayer = {
   "Swimming Pools": pools,
 
 };
 
-L.control.layers(null,Sectorslayer,{collapsed:false}).addTo(map);
+L.control.layers(null,Sectorslayer,{collapsed:false, position: 'topright'}).addTo(map);

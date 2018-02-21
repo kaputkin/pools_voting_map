@@ -39,6 +39,11 @@ p {
   border-radius: 5%;
 }
 
+.center {
+    display: block;
+    margin-left: 40px;
+
+}
 
 font-family: 'Sirin Stencil', cursive;
 font-family: 'Fredoka One', cursive;
