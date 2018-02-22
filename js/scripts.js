@@ -7,16 +7,38 @@ var map =
     }).addTo(map);
 
 map.createPane('ED');
-map.getPane('ED').style.zIndex = 200;
+map.createPane('Pools');
+map.getPane('ED').style.zIndex =300;      // must be set below 400?
+map.getPane('Pools').style.zIndex = 400;  // not actually controlling anything?
+map.getPane('Pools').style.pointerEvents = 'none';
 
 var myRenderer = L.canvas({ padding: 0.5 });
 var votinged = 'data/votingmini.geojson';
+// var pools = 'data/pools.geojson';
 
-$.getJSON(votinged, function (geojson) {
-  var geojsonLayer = L.geoJson(geojson, {style:styleED
-  }).addTo(map).bindPopup(feature.properties.D);
+$.getJSON(votinged, function (geojson){
+  var geojsonLayer = L.geoJson(geojson, {style:style
+  ,
+  onEachFeature: function(feature,layer){
+    layer.bindPopup(`${feature.properties.D}% voted for Trump in this district with ${feature.properties.P} private pools`, {
+      closeButton: false,
+      minWidth: 60,
+      offset: [0, -10]
+    });
+    layer.on('mouseover', function (e) {
+      this.openPopup();
+
+      e.target.setStyle({
+        weight: 3,
+        color: '#FFF',
+      });
+    });
+    layer.on('mouseout', function (e) {
+      this.closePopup();
+      geojsonLayer.resetStyle(e.target);
+    });
+  }}).addTo(map);
 });
-
 
   function getColor(x) {
       return x < 10   ? '#fef0d9':
@@ -32,7 +54,7 @@ $.getJSON(votinged, function (geojson) {
                         'grey';
 }
 
-  function styleED(feature) {
+  function style(feature) {
       return {
           fillColor: getColor(feature.properties.D),
           weight: .5,
@@ -51,19 +73,17 @@ $.getJSON(votinged, function (geojson) {
       radius: 2,
       stroke: false,
       fillOpacity: .1,
-      fillColor: '#1254ab'
+      fillColor: '#1254ab',
+      pane:'Pools',
     };
-  poolArray.push(L.circleMarker(latlon, options))
-
-  // map.on('zoomend', function() {
-  //   var currentZoom = map.getZoom();
-  //   options.setRadius(currentZoom);
+  poolArray.push(L.marker(latlon, options))
 });
 
-var pools = L.layerGroup(poolArray).addTo(map);
+var pools = L.featureGroup(poolArray).addTo(map);
 
 var Sectorslayer = {
   "Swimming Pools": pools,
+
 };
 
 L.control.layers(null,Sectorslayer,{collapsed:false, position: 'topright'}).addTo(map);
