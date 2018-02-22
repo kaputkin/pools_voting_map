@@ -17,8 +17,7 @@ var votinged = 'data/votingmini.geojson';
 // var pools = 'data/pools.geojson';
 
 $.getJSON(votinged, function (geojson){
-  var geojsonLayer = L.geoJson(geojson, {style:style
-  ,
+  var geojsonLayer = L.geoJson(geojson, {style:style,
   onEachFeature: function(feature,layer){
     layer.bindPopup(`${feature.properties.D}% voted for Trump in this district with ${feature.properties.P} private pools`, {
       closeButton: false,
@@ -76,7 +75,7 @@ $.getJSON(votinged, function (geojson){
       fillColor: '#1254ab',
       pane:'Pools',
     };
-  poolArray.push(L.marker(latlon, options))
+  poolArray.push(L.circleMarker(latlon, options))
 });
 
 var pools = L.featureGroup(poolArray).addTo(map);
