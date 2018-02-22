@@ -1,5 +1,5 @@
 var map =
-    L.map('my-map', {preferCanvas: true}).setView([40.732568, -74.082140], 11);
+    L.map('mymap', {preferCanvas: true}).setView([40.732568, -74.082140], 11);
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
     	subdomains: 'abcd',
@@ -7,14 +7,14 @@ var map =
     }).addTo(map);
 
 map.createPane('ED');
-map.getPane('ED').style.zIndex = 300;
+map.getPane('ED').style.zIndex = 200;
 
 var myRenderer = L.canvas({ padding: 0.5 });
 var votinged = 'data/votingmini.geojson';
 
 $.getJSON(votinged, function (geojson) {
-  var geojsonLayer = L.geoJson(geojson, {style:style
-      }).addTo(map);
+  var geojsonLayer = L.geoJson(geojson, {style:styleED
+  }).addTo(map).bindPopup(feature.properties.D);
 });
 
 
@@ -32,7 +32,7 @@ $.getJSON(votinged, function (geojson) {
                         'grey';
 }
 
-  function style(feature) {
+  function styleED(feature) {
       return {
           fillColor: getColor(feature.properties.D),
           weight: .5,
@@ -54,13 +54,16 @@ $.getJSON(votinged, function (geojson) {
       fillColor: '#1254ab'
     };
   poolArray.push(L.circleMarker(latlon, options))
+
+  // map.on('zoomend', function() {
+  //   var currentZoom = map.getZoom();
+  //   options.setRadius(currentZoom);
 });
 
-var pools = L.featureGroup(poolArray).addTo(map);
+var pools = L.layerGroup(poolArray).addTo(map);
 
 var Sectorslayer = {
   "Swimming Pools": pools,
-
 };
 
 L.control.layers(null,Sectorslayer,{collapsed:false, position: 'topright'}).addTo(map);
