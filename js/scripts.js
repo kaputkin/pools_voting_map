@@ -6,10 +6,16 @@ var map =
     	maxZoom: 19,
     }).addTo(map);
 
-//add raster tiles hosted on github  -- not working --
-    L.tileLayer('http://github.com/kaputkin/pools_voting_map/tree/master/data/data/{z}/{x}/{y}.png', {
-      maxZoom: 14
-    }).addTo(map);
+//add raster tiles hosted on github  --- not working ---
+
+    // L.tileLayer('http://github.com/kaputkin/pools_voting_map/tree/master/data/data/{z}/{x}/{y}.png', {
+    //   maxZoom: 14
+    // }).addTo(map);
+
+//add raster tiles hosted locally, but still tries to pull tiles not in dataset --- this does work ---
+L.tileLayer('http://localhost:8887/data/{z}/{x}/{y}.png', {
+  maxZoom: 14
+}).addTo(map);
 
 
 map.createPane('ED');
