@@ -4,7 +4,7 @@ var southWest = L.latLng(40.294192, -74.842987),
 
 var map =
     new L.Map('mymap', {
-      center: [40.743435,-74.1],
+      center: [40.723435,-74.1],
       zoom: 11,
       maxBounds: mybounds,
     });
