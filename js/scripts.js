@@ -20,8 +20,8 @@ var map =
 
 map.createPane('ED');
 map.createPane('Pools');
-map.getPane('ED').style.zIndex =300;      // must be set below 400?
-map.getPane('Pools').style.zIndex = 600;  // not actually controlling anything?
+map.getPane('ED').style.zIndex =300;
+map.getPane('Pools').style.zIndex = 600;
 map.getPane('Pools').style.pointerEvents = 'none';
 
 // var myRenderer = L.canvas({ padding: 0.5 });
@@ -68,10 +68,10 @@ $.getJSON(votinged, function (geojson){
   function style(feature) {
       return {
           fillColor: getColor(feature.properties.D),
-          weight: .5,
+          weight: 1,
           opacity: 1,
-          color: 'white',
-          fillOpacity: 0.7,
+          color: getColor(feature.properties.D),
+          fillOpacity: .8,
           pane: 'ED',
       };
   }
