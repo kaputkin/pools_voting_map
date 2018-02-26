@@ -9,6 +9,12 @@ var map =
       maxBounds: mybounds,
     });
 
+    L.tileLayer('data/data/{z}/{x}/{y}.png', {
+    minZoom: 8,
+    maxZoom: 14,
+    bounds: mybounds
+    }).addTo(map);
+
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
     	subdomains: 'abcd',
@@ -17,11 +23,6 @@ var map =
       bounds: mybounds
     }).addTo(map);
 
-    L.tileLayer('data/data/{z}/{x}/{y}.png', {
-    minZoom: 8,
-    maxZoom: 14,
-    bounds: mybounds
-    }).addTo(map);
 
 
 map.createPane('ED');
