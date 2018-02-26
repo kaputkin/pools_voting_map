@@ -6,6 +6,12 @@ var map =
     	maxZoom: 19,
     }).addTo(map);
 
+//add raster tiles hosted on github  -- not working --
+    L.tileLayer('http://github.com/kaputkin/pools_voting_map/tree/master/data/data/{z}/{x}/{y}.png', {
+      maxZoom: 14
+    }).addTo(map);
+
+
 map.createPane('ED');
 map.createPane('Pools');
 map.getPane('ED').style.zIndex =300;      // must be set below 400?
@@ -63,26 +69,26 @@ $.getJSON(votinged, function (geojson){
           pane: 'ED',
       };
   }
-
-  var poolArray = []  // empty array
-  pool_data.forEach(function(poolObject) {
-    var latlon = [poolObject.Y, poolObject.X];
-    var options = {
-      renderer: myRenderer,
-      radius: 2,
-      stroke: false,
-      fillOpacity: .1,
-      fillColor: '#1254ab',
-      pane:'Pools',
-    };
-  poolArray.push(L.circleMarker(latlon, options))
-});
-
-var pools = L.featureGroup(poolArray).addTo(map);
-
-var Sectorslayer = {
-  "Swimming Pools": pools,
-
-};
-
-L.control.layers(null,Sectorslayer,{collapsed:false, position: 'topright'}).addTo(map);
+//
+//   var poolArray = []  // empty array
+//   pool_data.forEach(function(poolObject) {
+//     var latlon = [poolObject.Y, poolObject.X];
+//     var options = {
+//       renderer: myRenderer,
+//       radius: 2,
+//       stroke: false,
+//       fillOpacity: .1,
+//       fillColor: '#1254ab',
+//       pane:'Pools',
+//     };
+//   poolArray.push(L.circleMarker(latlon, options))
+// });
+//
+// var pools = L.featureGroup(poolArray).addTo(map);
+//
+// var Sectorslayer = {
+//   "Swimming Pools": pools,
+//
+// };
+//
+// L.control.layers(null,Sectorslayer,{collapsed:false, position: 'topright'}).addTo(map);
