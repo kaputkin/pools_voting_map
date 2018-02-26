@@ -1,11 +1,11 @@
-var southWest = L.latLng(40.4, -74.5),
-    northEast = L.latLng(41.1, -73.4),
+var southWest = L.latLng(40.294192, -74.842987),
+    northEast = L.latLng(41.248903, -73.108521),
     mybounds = L.latLngBounds(southWest, northEast);
 
 var map =
     new L.Map('mymap', {
-      center: [40.713435,-73.971291],
-      zoom: 12,
+      center: [40.743435,-74.1],
+      zoom: 11,
       maxBounds: mybounds,
     });
 
