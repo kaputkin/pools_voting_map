@@ -1,0 +1,22 @@
+{
+    "interactivity": "false", 
+    "_updated": "1519595233000", 
+    "scale": "1", 
+    "autoscale": "true", 
+    "center": "-73.9105,40.7098,8", 
+    "format": "png8", 
+    "description": "", 
+    "metatile": "2", 
+    "bounds": "-74.4907,40.3613,-73.414,41.1063", 
+    "json": "{\"Stylesheet\":[{\"data\":\"Map {\\n}\\n\\n#pools {\\n  marker-width:1;\\n  marker-line-color: #519fff;\\n  marker-fill:#519fff;\\n  marker-allow-overlap:true;\\n  marker-ignore-placement:true;\\n  \\t[zoom < 10] {marker-width: 1}\\n  \\t[zoom = 13] {marker-width: 3}\\n  \\t[zoom >= 14] {marker-width: 5}\\n  \\t[zoom > 15] {marker-width: 6}\\n}\\n\",\"id\":\"style.mss\"}],\"Layer\":[{\"id\":\"countries\",\"name\":\"countries\",\"srs\":\"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over\",\"geometry\":\"polygon\",\"Datasource\":{\"file\":\"/Users/mac/Documents/MapBox/project/son/layers/countries/82945364-10m-admin-0-countries.shp\",\"type\":\"shape\"}},{\"geometry\":\"point\",\"extent\":[-74.25518031888434,40.498745624339115,-73.70101354834718,40.909347595228276],\"id\":\"pools\",\"class\":\"\",\"Datasource\":{\"file\":\"/Users/mac/Documents/MapBox/project/son/layers/pools.geojson\",\"layer\":\"OGRGeoJSON\",\"type\":\"ogr\"},\"layer\":null,\"srs-name\":\"autodetect\",\"srs\":\"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs\",\"advanced\":{},\"name\":\"pools\"}],\"tiles\":[\"http://127.0.0.1:20008/tile/son/{z}/{x}/{y}.png?updated=1519595233000&metatile=2&scale=1\"],\"grids\":[\"http://127.0.0.1:20008/tile/son/{z}/{x}/{y}.grid.json?updated=1519595233000&metatile=2&scale=1\"]}", 
+    "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over", 
+    "minzoom": "8", 
+    "version": "1.0.0", 
+    "template": "", 
+    "maxzoom": "14", 
+    "attribution": "", 
+    "tilejson": "2.0.0", 
+    "scheme": "xyz", 
+    "id": "son", 
+    "name": "Pools"
+}
