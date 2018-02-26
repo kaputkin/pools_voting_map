@@ -1,25 +1,27 @@
+var southWest = L.latLng(40.4, -74.5),
+    northEast = L.latLng(41.1, -73.4),
+    mybounds = L.latLngBounds(southWest, northEast);
+
 var map =
-    L.map('mymap', {preferCanvas: true}).setView([40.732568, -74.082140], 11);
+    new L.Map('mymap', {
+      center: [40.713435,-73.971291],
+      zoom: 12,
+      maxBounds: mybounds,
+    });
+
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
     	subdomains: 'abcd',
       minZoom: 8,
     	maxZoom: 14,
+      bounds: mybounds
     }).addTo(map);
 
-//add raster tiles hosted on github  --- not working ---
-
-    // L.tileLayer('http://github.com/kaputkin/pools_voting_map/tree/master/data/data/{z}/{x}/{y}.png', {
-    // minZoom: 8,
-    // maxZoom: 14
-    // }).addTo(map);
-
-//add raster tiles hosted locally. Still tries to pull tiles not in dataset   --- this does work ---
-
-    // L.tileLayer('http://localhost:8887/data/{z}/{x}/{y}.png', {
-    // minZoom: 8,
-    // maxZoom: 14
-    // }).addTo(map);
+    L.tileLayer('data/data/{z}/{x}/{y}.png', {
+    minZoom: 8,
+    maxZoom: 14,
+    bounds: mybounds
+    }).addTo(map);
 
 
 map.createPane('ED');
