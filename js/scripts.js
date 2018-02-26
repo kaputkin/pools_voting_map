@@ -9,12 +9,6 @@ var map =
       maxBounds: mybounds,
     });
 
-    L.tileLayer('data/data/{z}/{x}/{y}.png', {
-    minZoom: 8,
-    maxZoom: 14,
-    bounds: mybounds
-    }).addTo(map);
-
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
     	subdomains: 'abcd',
@@ -24,14 +18,13 @@ var map =
     }).addTo(map);
 
 
-
 map.createPane('ED');
 map.createPane('Pools');
 map.getPane('ED').style.zIndex =300;      // must be set below 400?
-map.getPane('Pools').style.zIndex = 400;  // not actually controlling anything?
+map.getPane('Pools').style.zIndex = 600;  // not actually controlling anything?
 map.getPane('Pools').style.pointerEvents = 'none';
 
-var myRenderer = L.canvas({ padding: 0.5 });
+// var myRenderer = L.canvas({ padding: 0.5 });
 var votinged = 'data/votingmini.geojson';
 // var pools = 'data/pools.geojson';
 
@@ -65,10 +58,10 @@ $.getJSON(votinged, function (geojson){
              x < 40   ? '#fdb77a' :
              x < 50   ? '#fd9b64' :
              x < 60   ? '#f77e50' :
-             x < 70  ? '#ec603f' :
-             x < 80  ? '#de422d' :
-             x < 90  ? '#c92116' :
-             x < 100 ? '#b30000' :
+             x < 70   ? '#ec603f' :
+             x < 80   ? '#de422d' :
+             x < 90   ? '#c92116' :
+             x < 100  ? '#b30000' :
                         'grey';
 }
 
@@ -82,6 +75,15 @@ $.getJSON(votinged, function (geojson){
           pane: 'ED',
       };
   }
+
+
+var poollayer = L.tileLayer('data/data/{z}/{x}/{y}.png', {
+      minZoom: 8,
+      maxZoom: 14,
+      bounds: mybounds,
+      pane: 'Pools'
+      }).addTo(map);
+
 
 //   var poolArray = []  // empty array
 //   pool_data.forEach(function(poolObject) {
@@ -97,11 +99,11 @@ $.getJSON(votinged, function (geojson){
 //   poolArray.push(L.circleMarker(latlon, options))
 // });
 //
-// var pools = L.featureGroup(poolArray).addTo(map);
-//
-// var Sectorslayer = {
-//   "Swimming Pools": pools,
-//
-// };
-//
-// L.control.layers(null,Sectorslayer,{collapsed:false, position: 'topright'}).addTo(map);
+// var pools = L.featureGroup().addTo(map);
+
+var Sectorslayer = {
+  "Swimming Pools": poollayer,
+
+};
+
+L.control.layers(null,Sectorslayer,{collapsed:false, position: 'topright'}).addTo(map);
