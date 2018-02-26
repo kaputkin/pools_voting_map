@@ -80,25 +80,25 @@ $.getJSON(votinged, function (geojson){
       };
   }
 
-  var poolArray = []  // empty array
-  pool_data.forEach(function(poolObject) {
-    var latlon = [poolObject.Y, poolObject.X];
-    var options = {
-      renderer: myRenderer,
-      radius: 2,
-      stroke: false,
-      fillOpacity: .1,
-      fillColor: '#1254ab',
-      pane:'Pools',
-    };
-  poolArray.push(L.circleMarker(latlon, options))
-});
-
-var pools = L.featureGroup(poolArray).addTo(map);
-
-var Sectorslayer = {
-  "Swimming Pools": pools,
-
-};
-
-L.control.layers(null,Sectorslayer,{collapsed:false, position: 'topright'}).addTo(map);
+//   var poolArray = []  // empty array
+//   pool_data.forEach(function(poolObject) {
+//     var latlon = [poolObject.Y, poolObject.X];
+//     var options = {
+//       renderer: myRenderer,
+//       radius: 2,
+//       stroke: false,
+//       fillOpacity: .1,
+//       fillColor: '#1254ab',
+//       pane:'Pools',
+//     };
+//   poolArray.push(L.circleMarker(latlon, options))
+// });
+//
+// var pools = L.featureGroup(poolArray).addTo(map);
+//
+// var Sectorslayer = {
+//   "Swimming Pools": pools,
+//
+// };
+//
+// L.control.layers(null,Sectorslayer,{collapsed:false, position: 'topright'}).addTo(map);
